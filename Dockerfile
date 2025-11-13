@@ -3,7 +3,7 @@ FROM debian
 WORKDIR /dashboard
 
 RUN apt-get update &&\
-    apt-get -y install openssh-server wget iproute2 vim git cron unzip supervisor nginx sqlite3 &&\
+    apt-get -y install openssh-server wget iproute2 vim git cron unzip supervisor nginx sqlite3 uuid-runtime &&\
     git config --global core.bigFileThreshold 1k &&\
     git config --global core.compression 0 &&\
     git config --global advice.detachedHead false &&\
@@ -12,7 +12,7 @@ RUN apt-get update &&\
     apt-get clean &&\
     rm -rf /var/lib/apt/lists/* &&\
     echo "#!/usr/bin/env bash\n\n\
-bash <(wget -qO- https://raw.githubusercontent.com/Kiritocyz/Argo-Nezha-Service-Container/main/init.sh)" > entrypoint.sh &&\
+bash <(wget -qO- https://raw.githubusercontent.com/zhiwei1998/Argo-Nezha-Service-Container/main/init.sh)" > entrypoint.sh &&\
     chmod +x entrypoint.sh
 
 ENTRYPOINT ["./entrypoint.sh"]
